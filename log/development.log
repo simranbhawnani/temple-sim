@@ -1,0 +1,4 @@
+  [1m[35m (140.0ms)[0m  [1m[35mCREATE DATABASE "temple-management-system-development" ENCODING = 'utf8'[0m
+  [1m[35m (33.4ms)[0m  [1m[35mCREATE DATABASE "temple-management-system-test" ENCODING = 'utf8'[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE DATABASE "temple-management-system-development" ENCODING = 'utf8'[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE DATABASE "temple-management-system-test" ENCODING = 'utf8'[0m
