@@ -1,0 +1,2 @@
+class OfflineCityCentresController < ApplicationController
+end
