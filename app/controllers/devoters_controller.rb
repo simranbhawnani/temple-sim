@@ -1,0 +1,2 @@
+class DevotersController < ApplicationController
+end

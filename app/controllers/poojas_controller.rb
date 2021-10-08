@@ -1,0 +1,2 @@
+class PoojasController < ApplicationController
+end
