@@ -1,0 +1,2 @@
+class Devoter < ApplicationRecord
+end
