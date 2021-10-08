@@ -1,0 +1,2 @@
+class TempleHistoryDetailsController < ApplicationController
+end
