@@ -1,0 +1,2 @@
+class TemplesController < ApplicationController
+end
