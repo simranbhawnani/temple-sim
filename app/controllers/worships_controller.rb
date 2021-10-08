@@ -1,0 +1,2 @@
+class WorshipsController < ApplicationController
+end
