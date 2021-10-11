@@ -3,9 +3,9 @@ default: &default
   encoding: utf8
   pool: <%= [Integer(ENV.fetch("MAX_THREADS", 5)), Integer(ENV.fetch("DB_POOL", 5))].max %>
   timeout: 5000
-  adapter: postgresql
-  password: 12345678
-  username: postgres
+  # adapter: postgresql
+  username: <%= ENV.fetch('DB_USERNAME') %>
+  password: <%= ENV.fetch('DB_PASS') %>
   host: localhost
   min_messages: warning
 

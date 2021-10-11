@@ -3,7 +3,7 @@ import React from "react"
 const FrontPage = () => {
   return (
     <div>
-      Hello Simran
+      Temple Front Page
     </div>
   )
 }
