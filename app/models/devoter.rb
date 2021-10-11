@@ -1,3 +1,3 @@
 class Devoter < ApplicationRecord
-    belongs_to :temple
+  belongs_to :temple
 end

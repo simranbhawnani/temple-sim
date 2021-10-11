@@ -1,4 +1,4 @@
 class Worship < ApplicationRecord
-    belongs_to :temple
-    has_many :slots
+  belongs_to :temple
+  has_many :slots
 end
