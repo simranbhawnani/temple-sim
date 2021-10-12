@@ -30,6 +30,7 @@ gem 'react-rails'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'pg', '~> 0.20'
 gem 'rails-erd', group: :development
+gem 'pry'
 gem 'devise'
 
 group :development, :test do
