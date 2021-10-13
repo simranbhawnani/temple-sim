@@ -1,8 +1,6 @@
 class TemplesController < ApplicationController
 
   def index
-    @temple_history_details = TempleHistoryDetail.all
-    render json: {temple_history_detail: @temple_history_detail}
   end
 
   def show
