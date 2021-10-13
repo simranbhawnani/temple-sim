@@ -1,5 +1,5 @@
 class Temple < ApplicationRecord
-  has_many :temple_history_details
+  has_many :temple_history_details, dependent: :destroy
   has_many :devoters
   has_many :users
   
