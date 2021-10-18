@@ -2,8 +2,18 @@
 
 class AddDeviseToUsers < ActiveRecord::Migration[6.0]
   def self.up
-    change_table :users do |t|
+    create_table :users do |t|
       ## Database authenticatable
+      t.string :first_name
+      t.string :last_name
+      t.string :address
+      t.integer :zipcode
+      t.string :contact
+      t.string :id_proof
+      t.string :proof_id_number
+      t.string :role
+      t.boolean :active_status
+      t.references :temple, foreign_key: true
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
