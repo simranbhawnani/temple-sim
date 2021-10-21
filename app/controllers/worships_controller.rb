@@ -1,7 +1,8 @@
 class WorshipsController < ApplicationController
-  
+  skip_before_action :verify_authenticity_token
+  before_action :find_worship, only: [:show, :update, :destroy]
+
   def show
-    @worship = Worship.find(params[:id])
     render json: {type: 'success', temple_history_detail: @worship}, status: 200
   end
 
@@ -20,7 +21,6 @@ class WorshipsController < ApplicationController
   end
 
   def update
-    @worship = Worship.find(params[:id])
     if @worship.update(worship_params)
       render json: {type: 'success', message: 'Update successfully', worship: @worship}, status: 200
     else
@@ -30,7 +30,6 @@ class WorshipsController < ApplicationController
   end
 
   def destroy
-    @worship = Worship.find(params[:id])
     if @worship.destroy
       render json: {type: 'success', message: 'Successfully destroyed!'}, status: 200
     else
@@ -39,6 +38,10 @@ class WorshipsController < ApplicationController
   end
 
   private
+
+    def find_worship
+      @worship = Worship.find(params[:id])
+    end
 
     def worship_params
       params.require(:worship).permit(:name, :type_of_pooja, :pundit, :start_time, :end_time, :temple_id)

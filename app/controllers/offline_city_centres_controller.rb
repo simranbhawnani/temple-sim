@@ -1,6 +1,7 @@
 class OfflineCityCentresController < ApplicationController
+  before_action :find_offline_city_centre, only: [:show, :update, :destroy]
+  
   def show
-    @offline_city_centre = OfflineCityCentre.find(params[:id])
     render json: {type: 'success', temple_history_detail: @offline_city_centre}, status: 200
   end
 
@@ -19,7 +20,6 @@ class OfflineCityCentresController < ApplicationController
   end
 
   def update
-    @offline_city_centre = OfflineCityCentre.find(params[:id])
     if @offline_city_centre.update(offline_city_centres_params)
       render json: {type: 'success', message: 'Update successfully', offline_city_centre: @offline_city_centre}, status: 200
     else
@@ -29,7 +29,6 @@ class OfflineCityCentresController < ApplicationController
   end
 
   def destroy
-    @offline_city_centre = OfflineCityCentre.find(params[:id])
     if @offline_city_centre.destroy
       render json: {type: 'success', message: 'Offline city centre successfully destroyed!'}, status: 200
     else
@@ -38,6 +37,10 @@ class OfflineCityCentresController < ApplicationController
   end
 
   private
+
+    def find_offline_city_centre
+      @offline_city_centre = OfflineCityCentre.find(id: params[:id])
+    end
 
     def offline_city_centres_params
       params.require(:offline_city_centre).permit(:address, :city, :state, :pincode, :mail_id, :phone_no, :temple_id)

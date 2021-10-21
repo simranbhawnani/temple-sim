@@ -1,4 +1,5 @@
 class TempleHistoryDetailsController < ApplicationController
+  before_action :find_temple_history_detail, only: [:show, :update, :destroy]
 
   def index
     @temple_history_details = TempleHistoryDetail.all
@@ -6,7 +7,6 @@ class TempleHistoryDetailsController < ApplicationController
   end
 
   def show
-    @temple_history_detail = TempleHistoryDetail.find(params[:id])
     render json: {type: 'success', temple_history_detail: @temple_history_detail}, status: 200
   end
 
@@ -35,7 +35,6 @@ class TempleHistoryDetailsController < ApplicationController
   end
 
   def destroy
-    @temple_history_detail = TempleHistoryDetail.find(params[:id])
     if @temple_history_detail.destroy
       render json: {type: 'success', message: 'Temple history successfully destroyed!'}, status: 200
     else
@@ -44,6 +43,10 @@ class TempleHistoryDetailsController < ApplicationController
   end
 
   private
+
+    def find_temple_history_detail
+      @temple_history_detail = TempleHistoryDetail.find(params[:id])
+    end
 
     def temple_history_details_params
       params.require(:temple_history_detail).permit(:temple_history, :temple_structure, :inside_temple_theertham, :outside_temple_theertham, :temple_id, :temple_history_images, :temple_structure_images, :inside_temple_theertham_images, :outside_temple_theertham_images)
