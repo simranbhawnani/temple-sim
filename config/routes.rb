@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   resources :temple_history_details
   resources :offline_city_centres
   resources :worships
+  resources :devoters
 end
 
