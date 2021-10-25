@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'temples#index'
+  root to: 'welcome#index'
   
   devise_for :users, controllers: {
     registrations: 'users/registrations',

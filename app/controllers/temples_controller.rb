@@ -3,6 +3,8 @@ class TemplesController < ApplicationController
   before_action :find_temple, only: [:show, :update, :destroy]
 
   def index
+    @temples = Temple.all
+    render json: {type: 'success', temples: @temples}, status: 200
   end
 
   def show
