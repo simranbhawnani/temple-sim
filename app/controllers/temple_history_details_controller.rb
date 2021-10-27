@@ -19,8 +19,7 @@ class TempleHistoryDetailsController < ApplicationController
     if @temple_history_detail.save
       render json: {type: 'success', message: 'Temple history successfully created!',temple_history_detail: @temple_history_detail}, status: 200
     else
-      flash[:error] = 'Falied to create temple history!'
-      redirect_back(fallback_location: new_temple_history_detail_path)
+      render json: {type: 'failed', message: 'Temple history failed to created!'}, status: 403
     end
   end
 
@@ -29,8 +28,7 @@ class TempleHistoryDetailsController < ApplicationController
     if @temple_history_detail.update(temple_history_details_params)
       render json: {type: 'success', message: 'Update successfully', temple_history_detail: @temple_history_detail}, status: 200
     else
-      flash[:error] = @temple_history_detail.errors.messages
-      redirect_back(fallback_location: temple_history_details_path)
+      render json: {type: 'failed', message: 'Failed to update!'}, status: 403
     end
   end
 
@@ -38,7 +36,7 @@ class TempleHistoryDetailsController < ApplicationController
     if @temple_history_detail.destroy
       render json: {type: 'success', message: 'Temple history successfully destroyed!'}, status: 200
     else
-      render json: {type: 'Failed', message: 'Failed to destroyed!'}
+      render json: {type: 'failed', message: 'Failed to destroyed!'}, status: 403
     end
   end
 

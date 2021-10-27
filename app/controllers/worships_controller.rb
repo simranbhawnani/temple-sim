@@ -15,8 +15,7 @@ class WorshipsController < ApplicationController
     if @worship.save
       render json: {type: 'success', message: 'Successfully created!',worship: @worship}, status: 200
     else
-      flash[:error] = 'Falied to create!'
-      redirect_back(fallback_location: new_worship_path)
+      render json: {type: 'failed', message: 'Failed to created!'}, status: 403
     end
   end
 
@@ -24,8 +23,7 @@ class WorshipsController < ApplicationController
     if @worship.update(worship_params)
       render json: {type: 'success', message: 'Update successfully', worship: @worship}, status: 200
     else
-      flash[:error] = @worship.errors.messages
-      redirect_back(fallback_location: worships_path)
+      render json: {type: 'failed', message: 'Failed to update!'}, status: 403
     end
   end
 
@@ -33,7 +31,7 @@ class WorshipsController < ApplicationController
     if @worship.destroy
       render json: {type: 'success', message: 'Successfully destroyed!'}, status: 200
     else
-      render json: {type: 'Failed', message: 'Failed to destroyed!'}
+      render json: {type: 'failed', message: 'Failed to destroyed!'}, status: 403
     end
   end
 

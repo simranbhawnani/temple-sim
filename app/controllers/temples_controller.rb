@@ -20,8 +20,7 @@ class TemplesController < ApplicationController
     if @temple.save
       render json: {type: 'success', message: 'Temple successfully created!',temple: @temple}, status: 200
     else
-      flash[:error] = 'Temple Name already exists!'
-      redirect_back(fallback_location: new_temple_path)
+      render json: {type: 'failed', message: 'Temple failed to created!'}, status: 403
     end
   end
 
@@ -33,8 +32,7 @@ class TemplesController < ApplicationController
     if @temple.update(temple_params)
       render json: {type: 'success', message: 'Update successfully'}, status: 200
     else
-      flash[:error] = @temple.errors.messages
-      redirect_back(fallback_location: temples_path)
+      render json: {type: 'failed', message: 'Temple failed to created!'}, status: 403
     end
   end
 
@@ -42,7 +40,7 @@ class TemplesController < ApplicationController
     if @temple.destroy
       render json: {type: 'success', message: 'Temple successfully destroyed!'}, status: 200
     else
-      render json: {type: 'Failed', message: 'Failed to destroyed!'}
+      render json: {type: 'failed', message: 'Failed to destroyed!'}, status: 403
     end
   end
 
@@ -56,4 +54,3 @@ class TemplesController < ApplicationController
       params.require(:temple).permit(:temple_name, :description, :temple_email, :phone_no, :temple_address, :city, :state, :country, :zipcode, :start_time, :end_time, :temple_images)
     end
 end
-

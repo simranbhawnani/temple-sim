@@ -17,7 +17,7 @@ class DevotersController < ApplicationController
     if @devoter.save
       render json: {type: 'success', message: 'Devoter successfully created!',Devoter: @devoter}, status: 200
     else
-      render json: {type: 'Failed', message: 'Failed to create'}
+      render json: {type: 'failed', message: 'Failed to create'}, status: 403
     end
   end
 
@@ -29,7 +29,7 @@ class DevotersController < ApplicationController
     if @devoter.update(devoter_params)
       render json: {type: 'success', message: 'Update successfully'}, status: 200
     else
-      render json: {type: 'Failed', message: 'Failed to update!'}
+      render json: {type: 'failed', message: 'Failed to update!'}, status: 403
     end
   end
 
@@ -37,7 +37,7 @@ class DevotersController < ApplicationController
     if @devoter.destroy
       render json: {type: 'success', message: 'Successfully destroyed!'}, status: 200
     else
-      render json: {type: 'Failed', message: 'Failed to destroyed!'}
+      render json: {type: 'failed', message: 'Failed to destroyed!'}, status: 403
     end
   end
 
