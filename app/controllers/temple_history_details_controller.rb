@@ -7,7 +7,7 @@ class TempleHistoryDetailsController < ApplicationController
   end
 
   def show
-    render json: {type: 'success', temple_history_detail: @temple_history_detail}, status: 200
+    render json: {temple_history_detail: @temple_history_detail}, status: 200
   end
 
   def new
@@ -17,28 +17,26 @@ class TempleHistoryDetailsController < ApplicationController
   def create
     @temple_history_detail = TempleHistoryDetail.new(temple_history_details_params)
     if @temple_history_detail.save
-      render json: {type: 'success', message: 'Temple history successfully created!',temple_history_detail: @temple_history_detail}, status: 200
+      render json: {message: 'Temple history successfully created!',temple_history_detail: @temple_history_detail}, status: 200
     else
-      flash[:error] = 'Falied to create temple history!'
-      redirect_back(fallback_location: new_temple_history_detail_path)
+      render json: {message: @temple_history_detail.errors.full_messages}
     end
   end
 
   def update
     @temple_history_detail = TempleHistoryDetail.find(params[:id])
     if @temple_history_detail.update(temple_history_details_params)
-      render json: {type: 'success', message: 'Update successfully', temple_history_detail: @temple_history_detail}, status: 200
+      render json: {message: 'Update successfully', temple_history_detail: @temple_history_detail}, status: 200
     else
-      flash[:error] = @temple_history_detail.errors.messages
-      redirect_back(fallback_location: temple_history_details_path)
+      render json: {message: @temple_history_detail.errors.full_messages}
     end
   end
 
   def destroy
     if @temple_history_detail.destroy
-      render json: {type: 'success', message: 'Temple history successfully destroyed!'}, status: 200
+      render json: {message: 'Temple history successfully destroyed!'}, status: 200
     else
-      render json: {type: 'Failed', message: 'Failed to destroyed!'}
+      render json: {message: @temple_history_detail.errors.full_messages}
     end
   end
 

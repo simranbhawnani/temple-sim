@@ -3,7 +3,7 @@ class WorshipsController < ApplicationController
   before_action :find_worship, only: [:show, :update, :destroy]
 
   def show
-    render json: {type: 'success', temple_history_detail: @worship}, status: 200
+    render json: {temple_history_detail: @worship}, status: 200
   end
 
   def new
@@ -13,27 +13,25 @@ class WorshipsController < ApplicationController
   def create
     @worship = Worship.new(worship_params)
     if @worship.save
-      render json: {type: 'success', message: 'Successfully created!',worship: @worship}, status: 200
+      render json: {message: 'Successfully created!',worship: @worship}, status: 200
     else
-      flash[:error] = 'Falied to create!'
-      redirect_back(fallback_location: new_worship_path)
+      render json: {message: @worship.errors.full_messages}
     end
   end
 
   def update
     if @worship.update(worship_params)
-      render json: {type: 'success', message: 'Update successfully', worship: @worship}, status: 200
+      render json: {message: 'Update successfully', worship: @worship}, status: 200
     else
-      flash[:error] = @worship.errors.messages
-      redirect_back(fallback_location: worships_path)
+      render json: {message: @worship.errors.full_messages}
     end
   end
 
   def destroy
     if @worship.destroy
-      render json: {type: 'success', message: 'Successfully destroyed!'}, status: 200
+      render json: {message: 'Successfully destroyed!'}, status: 200
     else
-      render json: {type: 'Failed', message: 'Failed to destroyed!'}
+      render json: {message: @worship.errors.full_messages}
     end
   end
 
