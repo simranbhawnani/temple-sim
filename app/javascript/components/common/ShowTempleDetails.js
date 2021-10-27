@@ -59,23 +59,21 @@ const ShowTempleDetails = () => {
         event.preventDefault()
         const url = `/temples/${id}`
         const payload = {
-          temple_name: templeData.temple_name,
-          description: templeData.description,
-          phone_no: templeData.phone_no,
-          city: templeData.city,
-          state: templeData.state,
-          country: templeData.country,
-          zipcode: templeData.zipcode,
-          temple_address: templeData.temple_address,
-          temple_email: templeData.temple_email,
-          start_time: templeData.start_time,
-          end_time: templeData.end_time
+          temple_name: formContent.temple_name !== '' ? formContent.temple_name : templeData.temple_name,
+          description: formContent.description !== '' ? formContent.description : templeData.description,
+          phone_no: formContent.phone_no !== '' ? formContent.phone_no : templeData.phone_no,
+          city: formContent.city !== '' ? formContent.city : templeData.city,
+          state: formContent.state !== '' ? formContent.state : templeData.state,
+          country: formContent.country !== '' ? formContent.country : templeData.country,
+          zipcode: formContent.zipcode !== '' ? formContent.zipcode : templeData.zipcode,
+          temple_address: formContent.temple_address !== '' ? formContent.temple_address : templeData.temple_address,
+          temple_email: formContent.temple_email !== '' ? formContent.temple_email : templeData.temple_email,
+          start_time: formContent.start_time !== '' ? formContent.start_time : templeData.start_time,
+          end_time: formContent.end_time !== '' ? formContent.end_time : templeData.end_time
         }
-
-          debugger
         var form_data = new FormData()
-        for (var key in formContent) {
-            form_data.append(`temple[${key}]`, formContent[key])
+        for (var key in payload) {
+            form_data.append(`temple[${key}]`, payload[key])
         }
 
         const CSRF_Token = document
@@ -83,7 +81,6 @@ const ShowTempleDetails = () => {
             .getAttribute('content')
 
         try {
-          debugger
             const response = await axios.put(url, form_data, {
                 headers: {
                     'content-type': 'multipart/form-data',
@@ -102,10 +99,10 @@ const ShowTempleDetails = () => {
         }
     }
 
-    const startTime = moment(templeData?.start_time).format("DD MMM, YYYY  HH:mm")
+    const startTime = moment(templeData?.start_time).format("HH:mm")
+    const endTime = moment(templeData?.end_time).format("HH:mm")
 
     const handleInputField = (event, columnHeader) => {
-      debugger
         const value = event.target.value
 
         setFormContent((prevState) => ({
@@ -130,7 +127,7 @@ const ShowTempleDetails = () => {
           <Col sm="10">
             <Form.Control type="text" style={{width: '30%'}} 
               defaultValue={templeData?.temple_address}
-              onChange={e => {e.target.value}}
+              onChange={e => {handleInputField(e, 'temple_address')}}
             />
           </Col>
         </Form.Group>
@@ -139,7 +136,7 @@ const ShowTempleDetails = () => {
           <Col sm="10">
             <Form.Control type="email" placeholder="name@example.com" style={{width: '30%'}} 
               defaultValue={templeData?.temple_email}
-              onChange={e => {e.target.value}}
+              onChange={e => {handleInputField(e, 'temple_email')}}
             />
           </Col>
         </Form.Group>
@@ -148,7 +145,7 @@ const ShowTempleDetails = () => {
           <Col sm="10">
             <Form.Control type="text" style={{width: '30%'}} 
               defaultValue={templeData?.city}
-              onChange={e => {e.target.value}}
+              onChange={e => {handleInputField(e, 'city')}}
             />
           </Col>
         </Form.Group>
@@ -157,7 +154,7 @@ const ShowTempleDetails = () => {
           <Col sm="10">
             <Form.Control type="text" style={{width: '30%'}} 
               defaultValue={templeData?.state}
-              onChange={e => {e.target.value}}
+              onChange={e => {handleInputField(e, 'state')}}
             />
           </Col>
         </Form.Group>
@@ -166,7 +163,7 @@ const ShowTempleDetails = () => {
           <Col sm="10">
             <Form.Control type="text" style={{width: '30%'}} 
               defaultValue={templeData?.country}
-              onChange={e => {e.target.value}}
+              onChange={e => {handleInputField(e, 'country')}}
             />
           </Col>
         </Form.Group>
@@ -175,7 +172,7 @@ const ShowTempleDetails = () => {
           <Col sm="10">
             <Form.Control type="text"style={{width: '30%'}} 
               defaultValue={templeData?.phone_no}
-              onChange={e => {e.target.value}}
+              onChange={e => {handleInputField(e, 'phone_no')}}
             />
           </Col>
         </Form.Group>
@@ -184,7 +181,7 @@ const ShowTempleDetails = () => {
           <Col sm="10">
             <Form.Control type="number"style={{width: '30%'}} 
               defaultValue={templeData?.zipcode}
-              onChange={e => {e.target.value}}
+              onChange={e => {handleInputField(e, 'zipcode')}}
             />
           </Col>
         </Form.Group>
@@ -193,7 +190,7 @@ const ShowTempleDetails = () => {
           <Col sm="10">
             <Form.Control as="textarea" rows={3} style={{width: '30%'}} 
               defaultValue={templeData?.description}
-              onChange={e => {e.target.value}}
+              onChange={e => {handleInputField(e, 'description')}}
             />
           </Col>
         </Form.Group>
@@ -202,7 +199,7 @@ const ShowTempleDetails = () => {
           <Col sm="10">
             <Form.Control type="text"style={{width: '30%'}} 
               defaultValue={startTime}
-              onChange={e => {e.target.value}}
+              onChange={e => {handleInputField(e, 'start_time')}}
             />
           </Col>
         </Form.Group>
@@ -210,8 +207,8 @@ const ShowTempleDetails = () => {
           <Form.Label column sm="2">End Time</Form.Label>
           <Col sm="10">
             <Form.Control type="text"style={{width: '30%'}} 
-              defaultValue={templeData?.end_time}
-              onChange={e => {e.target.value}}
+              defaultValue={endTime}
+              onChange={e => {handleInputField(e, 'end_time')}}
             />
           </Col>
         </Form.Group>
