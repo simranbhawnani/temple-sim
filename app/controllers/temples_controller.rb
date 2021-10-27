@@ -4,11 +4,11 @@ class TemplesController < ApplicationController
 
   def index
     @temples = Temple.all
-    render json: {type: 'success', temples: @temples}, status: 200
+    render json: {temples: @temples}, status: 200
   end
 
   def show
-    render json: {type: 'success', temple: @temple}, status: 200
+    render json: {temple: @temple}, status: 200
   end
   
   def new
@@ -18,9 +18,9 @@ class TemplesController < ApplicationController
   def create
     @temple = Temple.new(temple_params)
     if @temple.save
-      render json: {type: 'success', message: 'Temple successfully created!',temple: @temple}, status: 200
+      render json: {message: 'Temple successfully created!',temple: @temple}, status: 200
     else
-      render json: {type: 'failed', message: 'Temple failed to created!'}, status: 403
+      render json: {message: @temple.errors.full_messages}
     end
   end
 
@@ -30,17 +30,17 @@ class TemplesController < ApplicationController
 
   def update
     if @temple.update(temple_params)
-      render json: {type: 'success', message: 'Update successfully'}, status: 200
+      render json: {message: 'Update successfully'}, status: 200
     else
-      render json: {type: 'failed', message: 'Temple failed to created!'}, status: 403
+      render json: {message: @temple.errors.full_messages}
     end
   end
 
   def destroy
     if @temple.destroy
-      render json: {type: 'success', message: 'Temple successfully destroyed!'}, status: 200
+      render json: {message: 'Temple successfully destroyed!'}, status: 200
     else
-      render json: {type: 'failed', message: 'Failed to destroyed!'}, status: 403
+      render json: {message: @temple.errors.full_messages}
     end
   end
 
