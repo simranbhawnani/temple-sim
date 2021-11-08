@@ -5,7 +5,7 @@ class DevotersController < ApplicationController
   end
 
   def show
-    render json: {type: 'success', devoter: @devoter}, status: 200
+    render json: {devoter: @devoter}, status: 200
   end
   
   def new
@@ -15,9 +15,9 @@ class DevotersController < ApplicationController
   def create
     @devoter = Devoter.new(Devoter_params)
     if @devoter.save
-      render json: {type: 'success', message: 'Devoter successfully created!',Devoter: @devoter}, status: 200
+      render json: {message: 'Devoter successfully created!',Devoter: @devoter}, status: 200
     else
-      render json: {type: 'Failed', message: 'Failed to create'}
+      render json: {message: @devoter.errors.full_messages}
     end
   end
 
@@ -27,17 +27,17 @@ class DevotersController < ApplicationController
 
   def update
     if @devoter.update(devoter_params)
-      render json: {type: 'success', message: 'Update successfully'}, status: 200
+      render json: {message: 'Update successfully'}, status: 200
     else
-      render json: {type: 'Failed', message: 'Failed to update!'}
+      render json: {message: @worship.errors.full_messages}
     end
   end
 
   def destroy
     if @devoter.destroy
-      render json: {type: 'success', message: 'Successfully destroyed!'}, status: 200
+      render json: {message: 'Successfully destroyed!'}, status: 200
     else
-      render json: {type: 'Failed', message: 'Failed to destroyed!'}
+      render json: {message: @devoter.errors.full_messages}
     end
   end
 
