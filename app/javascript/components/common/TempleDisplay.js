@@ -1,11 +1,11 @@
 import React from "react"
-import ShowTempleDetails from './ShowTempleDetails'
+import AdminLogin from './AdminLogin'
 import { BrowserRouter } from 'react-router-dom'
 
 const TempleDisplay = () => {
   return (
     <BrowserRouter>
-      <ShowTempleDetails/>
+      <AdminLogin/>
     </BrowserRouter>
   )
 }

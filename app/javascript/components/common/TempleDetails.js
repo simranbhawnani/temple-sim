@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import {Row, Col} from 'react-bootstrap'
+import {Row, Col, Button} from 'react-bootstrap'
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios'
 
 const TempleDetails = (props) => {
   const [result, setResult] = useState()
@@ -15,8 +16,17 @@ const TempleDetails = (props) => {
     background: "linear-gradient(to right bottom, #ff6b6b, #f8c016)",
     textAlign: "center"
   }
+  const logoutTemple = (id) => {
+    let url = `/users/sign_out`
+    axios.delete(url).then(res => {
+      const del = templeData.filter(item => id !== item.id)
+      setItems(del)
+      window.location.href = "/TempleDisplay"
+    })
+  }
   const { touched, errors } = props;
   return(
+    <>
     <React.Fragment>
       <div className="container">
         <div className="login-wrapper" style={loginPageStyle}>
@@ -122,6 +132,10 @@ const TempleDetails = (props) => {
         </div>
       </div>
     </React.Fragment>
+    <Button variant="primary" onClick={() => logoutTemple(templeData?.id)} style={{marginLeft: '10px'}}>
+      Logout
+    </Button>
+    </>
   );
 }
 
