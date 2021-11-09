@@ -1,8 +1,9 @@
 class OfflineCityCentresController < ApplicationController
+  # skip_before_action :verify_authenticity_token
   before_action :find_offline_city_centre, only: [:show, :update, :destroy]
   
   def show
-    render json: {temple_history_detail: @offline_city_centre}, status: 200
+    render json: {offline_city_centre: @offline_city_centre}, status: 200
   end
 
   def new
@@ -37,7 +38,7 @@ class OfflineCityCentresController < ApplicationController
   private
 
     def find_offline_city_centre
-      @offline_city_centre = OfflineCityCentre.find(id: params[:id])
+      @offline_city_centre = OfflineCityCentre.find(params[:id])
     end
 
     def offline_city_centres_params
