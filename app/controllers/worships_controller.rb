@@ -1,9 +1,9 @@
 class WorshipsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  # skip_before_action :verify_authenticity_token
   before_action :find_worship, only: [:show, :update, :destroy]
 
   def show
-    render json: {temple_history_detail: @worship}, status: 200
+    render json: {worship: @worship}, status: 200
   end
 
   def new

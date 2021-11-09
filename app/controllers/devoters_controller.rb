@@ -1,4 +1,5 @@
 class DevotersController < ApplicationController
+  # skip_before_action :verify_authenticity_token
   before_action :find_devoter, only: [:show, :update, :destroy]
 
   def index
@@ -13,7 +14,7 @@ class DevotersController < ApplicationController
   end
 
   def create
-    @devoter = Devoter.new(Devoter_params)
+    @devoter = Devoter.new(devoter_params)
     if @devoter.save
       render json: {message: 'Devoter successfully created!',Devoter: @devoter}, status: 200
     else
