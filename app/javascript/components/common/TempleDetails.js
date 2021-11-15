@@ -1,10 +1,15 @@
 import React, {useState} from 'react';
-import {Row, Col} from 'react-bootstrap'
+import {Row, Col, Button} from 'react-bootstrap'
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios'
 
 const TempleDetails = (props) => {
+  const [items, setItems] = useState()
+  console.log("props ==========", props)
+  // debugger
   const [result, setResult] = useState()
+  // const { id } = useParams()
   const loginPageStyle = {
     margin: "100px auto 37px",
     maxWidth: "80%",
@@ -15,8 +20,24 @@ const TempleDetails = (props) => {
     background: "linear-gradient(to right bottom, #ff6b6b, #f8c016)",
     textAlign: "center"
   }
+  const logoutTemple = () => {
+    let url = "/users/sign_out"
+    // debugger
+    axios.delete(url).then(res => {
+      console.log(res)
+      // setItems(props?.current_user?.id)
+      // window.location.href = "/temple"
+    })
+    // fetch(url, {
+    //     method: 'DELETE'
+    // }).then(response => {response.json() 
+    //   console.log("dsd")
+    // })
+  }
+
   const { touched, errors } = props;
   return(
+    <>
     <React.Fragment>
       <div className="container">
         <div className="login-wrapper" style={loginPageStyle}>
@@ -122,6 +143,10 @@ const TempleDetails = (props) => {
         </div>
       </div>
     </React.Fragment>
+    <Button variant="primary" onClick={logoutTemple} style={{marginLeft: '10px'}}>
+      Logout
+    </Button>
+    </>
   );
 }
 

@@ -44,11 +44,11 @@ const ShowTempleDetails = () => {
     }
 
     const deleteTempleData = (id) => {
-    let url = `/temples/${id}`
-    axios.delete(url).then(res => {
-      const del = templeData.filter(item => id !== item.id)
-      setItems(del)
-    })
+      let url = `/temples/${id}`
+      axios.delete(url).then(res => {
+        const del = templeData.filter(item => id !== item.id)
+        setItems(del)
+      })
   }
 
   useEffect(() => {
