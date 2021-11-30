@@ -5,8 +5,10 @@ const useStyles = makeStyles(theme => ({
     justifyContent : "left",
   },
   drawer : {
+    marginTop: "74px",
     paddingTop : "20px",
     width: "250px",
+    backgroundColor: "orange"
   },
   item: {
     display: 'flex',

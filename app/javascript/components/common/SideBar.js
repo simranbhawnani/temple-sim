@@ -13,11 +13,11 @@ const SideBar = (props) => {
         let newData = {...menu, [item] : !menu[item]};
         setMenu(newData);
     }
-    const CustomRouterLink = forwardRef((props, ref) => (
-      <div ref={ref} style={{ flexGrow: 1 }}>
-        <RouterLink {...props} />
-      </div>
-    ));
+    // const CustomRouterLink = forwardRef((props, ref) => (
+    //   <div ref={ref} style={{ flexGrow: 1 }}>
+    //     <RouterLink {...props} />
+    //   </div>
+    // ));
     const handleMenu = ( children, level=0 ) => {
         return children.map(({children, name, url, links }) => {
             if ( !children ) {
@@ -35,7 +35,7 @@ const SideBar = (props) => {
                         [classes.button] : true,
                         [classes.subMenu] : level
                       })}
-                      component={CustomRouterLink}
+                      // component={CustomRouterLink}
                       to={url}
                     >
                       {name}

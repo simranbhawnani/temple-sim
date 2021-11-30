@@ -1,59 +1,29 @@
 export default {
     "data" : [
       {
-          "name": "Temple Details",
-          "url": "/TempleDetails"
+          "name": "DashBoard",
+          "url": "/temples"
       },
       {
-        "name": "Item2",
+        "name": "Slot Time",
         "url": "/item2"
       },
       {
-        "name": "Item3",
+        "name": "User Details",
+        "url": "/item2"
+      },
+      {
+        "name": "Temple Details",
         "children": [
           {
-            "name": "Child31",
+            "name": "Create Temple",
             "url": "/child31"
           },
           {
-            "name": "Child32",
+            "name": "Edit or Delete Temple",
             "url": "/child32"
-          },
-          {
-            "name": "Child33",
-            "url": "/child33"
           }
         ]
       },
-      {
-        "name": "Item4",
-        "children": [
-          {
-            "name": "Child41",
-            "url": "/child41"
-          },
-          {
-            "name": "Child42",
-            "url": "/child42"
-          },
-          {
-            "name": "Child43",
-            "children": [
-              {
-                "name": "Child431",
-                "url": "/child431"
-              },
-              {
-                "name": "Child432",
-                "url": "/child432,"
-              },
-              {
-                "name": "Child433",
-                "url": "/child433"
-              }
-            ]
-          }
-        ]
-      }
     ]
   }
