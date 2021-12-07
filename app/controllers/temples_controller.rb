@@ -3,6 +3,7 @@ class TemplesController < ApplicationController
   before_action :find_temple, only: [:show, :update, :destroy]
 
   def index
+    byebug
     @temples = Temple.all
     # render json: {temples: @temples}, status: 200
   end
@@ -10,7 +11,7 @@ class TemplesController < ApplicationController
   def show
     # render json: {temple: @temple}, status: 200
   end
-  
+
   def new
     @temple = Temple.new
   end

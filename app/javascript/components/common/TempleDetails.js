@@ -3,7 +3,7 @@ import {Row, Col, Button} from 'react-bootstrap'
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import SideBar from './SideBar'
-import TopNavbar from './TopNavbar'
+// import TopNavbar from './TopNavbar'
 
 const TempleDetails = (props) => {
   const [items, setItems] = useState()
@@ -26,7 +26,7 @@ const TempleDetails = (props) => {
   return(
     <>
     <SideBar />
-    <TopNavbar />
+    {/* <TopNavbar /> */}
     <React.Fragment>
       <div className="container">
         <div className="login-wrapper" style={loginPageStyle}>
@@ -114,7 +114,7 @@ const TempleDetails = (props) => {
               <Col xs={6}>
                  <div className="form-group">
                     <label htmlFor="number">Closing Time</label>
-                    <Field type="text" name="end_time" className={"form-control"} placeholder="(HH/MM)"/>  
+                    <Field type="text" name="end_time" className={"form-control"} placeholder="(HH/MM)"/>
                     { touched.end_time && errors.end_time && <span className="help-block text-danger">{errors.closing}</span> }
                   </div>
               </Col>
